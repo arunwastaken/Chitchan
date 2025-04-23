@@ -10,11 +10,11 @@ import {
 } from "@chakra-ui/react";
 import { Timestamp } from "firebase/firestore";
 import moment from "moment";
-import { FaReddit } from "react-icons/fa";
 import {
   IoArrowDownCircleOutline,
   IoArrowUpCircleOutline,
 } from "react-icons/io5";
+import { ChitchanLogo } from "../../../components/Icons/ChitchanLogo";
 
 export type Comment = {
   id?: string;
@@ -61,7 +61,7 @@ const CommentItem: React.FC<CommentItemProps> = ({
   return (
     <Flex>
       <Box mr={2}>
-        <Icon as={FaReddit} fontSize={30} color="gray.300" />
+        <Icon as={ChitchanLogo} fontSize={30} color="gray.300" />
       </Box>
       <Stack spacing={1}>
         <Stack direction="row" align="center" spacing={2} fontSize="8pt">

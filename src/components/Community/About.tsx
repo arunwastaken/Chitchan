@@ -21,7 +21,7 @@ import { auth, firestore, storage } from "../../firebase/clientApp";
 import { Community, communityState } from "../../atoms/communitiesAtom";
 import moment from "moment";
 import { useRecoilValue, useSetRecoilState } from "recoil";
-import { FaReddit } from "react-icons/fa";
+import { ChitchanLogo } from "../../components/Icons/ChitchanLogo";
 import { getDownloadURL, ref, uploadString } from "firebase/storage";
 import { doc, updateDoc } from "firebase/firestore";
 
@@ -194,7 +194,7 @@ const About: React.FC<AboutProps> = ({
                         />
                       ) : (
                         <Icon
-                          as={FaReddit}
+                          as={ChitchanLogo}
                           fontSize={40}
                           color="brand.100"
                           mr={2}

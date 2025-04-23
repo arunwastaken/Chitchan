@@ -7,7 +7,7 @@ import {
   DirectoryMenuItem,
   directoryMenuState,
 } from "../atoms/directoryMenuAtom";
-import { FaReddit } from "react-icons/fa";
+import { ChitchanLogo } from "../components/Icons/ChitchanLogo";
 
 const useDirectory = () => {
   const [directoryState, setDirectoryState] =
@@ -49,7 +49,7 @@ const useDirectory = () => {
         selectedMenuItem: {
           displayText: `r/${existingCommunity.id}`,
           link: `r/${existingCommunity.id}`,
-          icon: FaReddit,
+          icon: ChitchanLogo,
           iconColor: "blue.500",
           imageURL: existingCommunity.imageURL,
         },

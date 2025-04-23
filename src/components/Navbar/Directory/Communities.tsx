@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { Box, Flex, Icon, MenuItem, Text } from "@chakra-ui/react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { FaReddit } from "react-icons/fa";
 import { GrAdd } from "react-icons/gr";
 import { useRecoilValue } from "recoil";
 import { communityState } from "../../../atoms/communitiesAtom";
 import { auth } from "../../../firebase/clientApp";
 import CreateCommunityModal from "../../Modal/CreateCommunity";
 import MenuListItem from "./MenuListItem";
+import { ChitchanLogo } from "../../../components/Icons/ChitchanLogo";
 
 type CommunitiesProps = {
   menuOpen: boolean;
@@ -40,7 +40,7 @@ const Communities: React.FC<CommunitiesProps> = ({ menuOpen }) => {
                 key={snippet.communityId}
                 displayText={`r/${snippet.communityId}`}
                 link={`/r/${snippet.communityId}`}
-                icon={FaReddit}
+                icon={ChitchanLogo}
                 iconColor="brand.100"
               />
             ))}
@@ -64,7 +64,7 @@ const Communities: React.FC<CommunitiesProps> = ({ menuOpen }) => {
         {mySnippets.map((snippet) => (
           <MenuListItem
             key={snippet.communityId}
-            icon={FaReddit}
+            icon={ChitchanLogo}
             displayText={`r/${snippet.communityId}`}
             link={`/r/${snippet.communityId}`}
             iconColor="blue.500"

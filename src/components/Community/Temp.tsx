@@ -8,6 +8,7 @@ import { IoImageOutline } from "react-icons/io5";
 import { useSetRecoilState } from "recoil";
 import { authModalState } from "../../atoms/authModalAtom";
 import { auth } from "../../firebase/clientApp";
+import { ChitchanLogo } from "../../components/Icons/ChitchanLogo";
 
 const CreatePostLink: React.FC = () => {
   const router = useRouter();
@@ -35,7 +36,7 @@ const CreatePostLink: React.FC = () => {
       p={2}
       mb={4}
     >
-      <Icon as={FaReddit} fontSize={36} color="gray.300" mr={4} />
+      <Icon as={ChitchanLogo} fontSize={36} color="gray.300" mr={4} />
       <Input
         placeholder="Create Post"
         fontSize="10pt"

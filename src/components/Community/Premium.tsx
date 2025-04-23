@@ -16,8 +16,8 @@ const Premium: React.FC = () => {
       <Flex mb={2}>
         <Icon as={GiCheckedShield} fontSize={26} color="brand.100" mt={2} />
         <Stack spacing={1} fontSize="9pt" pl={2}>
-          <Text fontWeight={600}>Reddit Premium</Text>
-          <Text>The best Reddit experience, with monthly Coins</Text>
+          <Text fontWeight={600}>Chitchan Premium</Text>
+          <Text>The best Chitchan experience, with monthly Coins</Text>
         </Stack>
       </Flex>
       <Button height="30px" bg="brand.100">
@@ -26,4 +26,5 @@ const Premium: React.FC = () => {
     </Flex>
   );
 };
+
 export default Premium;

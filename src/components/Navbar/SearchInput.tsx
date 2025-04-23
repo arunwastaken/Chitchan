@@ -1,12 +1,10 @@
 import React from "react";
 import { Flex, InputGroup, InputLeftElement, Input } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
-import { auth } from "firebase-admin";
-import { user } from "firebase-functions/v1/auth";
 import { User } from "firebase/auth";
 
 type SearchInputProps = {
-  user: User;
+  user?: User | null;
 };
 
 const SearchInput: React.FC<SearchInputProps> = ({ user }) => {
@@ -18,15 +16,11 @@ const SearchInput: React.FC<SearchInputProps> = ({ user }) => {
       alignItems="center"
     >
       <InputGroup>
-        <InputLeftElement
-          pointerEvents="none"
-          color="gray.400"
-          // children={<SearchIcon mb={2} />}
-        >
-          <SearchIcon mb={2} />
+        <InputLeftElement pointerEvents="none">
+          <SearchIcon color="gray.400" mb={2} />
         </InputLeftElement>
         <Input
-          placeholder="Search Reddit"
+          placeholder="Search Chitchan"
           fontSize="10pt"
           _placeholder={{ color: "gray.500" }}
           _hover={{
@@ -46,4 +40,5 @@ const SearchInput: React.FC<SearchInputProps> = ({ user }) => {
     </Flex>
   );
 };
+
 export default SearchInput;

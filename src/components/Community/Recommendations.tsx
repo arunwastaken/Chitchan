@@ -12,7 +12,7 @@ import {
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { FaReddit } from "react-icons/fa";
+import { ChitchanLogo } from "../../components/Icons/ChitchanLogo";
 import { Community } from "../../atoms/communitiesAtom";
 import { firestore } from "../../firebase/clientApp";
 import useCommunityData from "../../hooks/useCommunityData";
@@ -67,10 +67,11 @@ const Recommendations: React.FC<RecommendationsProps> = () => {
         height="70px"
         borderRadius="4px 4px 0px 0px"
         fontWeight={600}
-        bgImage="url(/images/recCommsArt.png)"
+        bgImage="url(/images/recCommsArt.jpg)"
         backgroundSize="cover"
+        backgroundPosition="center -40px"
         bgGradient="linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75)),
-        url('images/recCommsArt.png')"
+        url('/images/recCommsArt.jpg')"
       >
         Top Communities
       </Flex>
@@ -121,7 +122,7 @@ const Recommendations: React.FC<RecommendationsProps> = () => {
                           />
                         ) : (
                           <Icon
-                            as={FaReddit}
+                            as={ChitchanLogo}
                             fontSize={30}
                             color="brand.100"
                             mr={2}

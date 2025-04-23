@@ -1,6 +1,6 @@
 import React from "react";
 import { Button, Flex, Icon, Stack, Text } from "@chakra-ui/react";
-import { FaReddit } from "react-icons/fa";
+import { ChitchanLogoColored } from "../../components/Icons/ChitchanLogoColored";
 
 const PersonalHome: React.FC = () => {
   return (
@@ -23,15 +23,15 @@ const PersonalHome: React.FC = () => {
         fontWeight={600}
         bgImage="url(/images/redditPersonalHome.png)"
         backgroundSize="cover"
-      ></Flex>
+      />
       <Flex direction="column" p="12px">
         <Flex align="center" mb={2}>
-          <Icon as={FaReddit} fontSize={50} color="brand.100" mr={2} />
+          <Icon as={ChitchanLogoColored} fontSize={50} mr={2} />
           <Text fontWeight={600}>Home</Text>
         </Flex>
         <Stack spacing={3}>
           <Text fontSize="9pt">
-            Your personal Reddit frontpage, built for you.
+            Your personal Chitchan frontpage, built for you.
           </Text>
           <Button height="30px">Create Post</Button>
           <Button variant="outline" height="30px">
@@ -42,4 +42,5 @@ const PersonalHome: React.FC = () => {
     </Flex>
   );
 };
+
 export default PersonalHome;

@@ -1,6 +1,6 @@
-# Chitchan - A Reddit Clone 
+# Chitchan - A Social Media Platform 🚀
 
-Chitchan is a modern Reddit clone built with Next.js, Firebase, and Chakra UI. It's a full-stack social media platform where users can create communities, share posts, and interact with others.
+Chitchan is a modern social media platform built with Next.js, Firebase, and Chakra UI. It's a full-stack social media platform where users can create communities, share posts, and interact with others.
 
 ## 🌟 Features
 
@@ -154,7 +154,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Next.js](https://nextjs.org/)
 - [Firebase](https://firebase.google.com/)
 - [Chakra UI](https://chakra-ui.com/)
-- [Reddit](https://www.reddit.com/) for inspiration
+- [Chitchan](https://github.com/DivyanshVerma0/Chitchan) for inspiration
 
 ## 📞 Support
 

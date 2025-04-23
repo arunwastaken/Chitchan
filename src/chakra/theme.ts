@@ -5,7 +5,12 @@ import { Input } from "./input";
 export const theme = extendTheme({
   colors: {
     brand: {
-      100: "#FF3C00",
+      100: "#38A169",
+      50: "#F0FFF4",
+      200: "#48BB78",
+      300: "#38A169",
+      400: "#2F855A",
+      500: "#276749",
     },
   },
   fonts: {

@@ -1,9 +1,9 @@
 import React from "react";
 import { Box, Button, Flex, Icon, Text, Image } from "@chakra-ui/react";
-import { FaReddit } from "react-icons/fa";
 import { Community, communityState } from "../../atoms/communitiesAtom";
 import useCommunityData from "../../hooks/useCommunityData";
 import { useSetRecoilState } from "recoil";
+import { ChitchanLogoColored } from "../../components/Icons/ChitchanLogoColored";
 
 type HeaderProps = {
   communityData: Community;
@@ -39,11 +39,10 @@ const Header: React.FC<HeaderProps> = ({ communityData }) => {
             />
           ) : (
             <Icon
-              as={FaReddit}
+              as={ChitchanLogoColored}
               fontSize={64}
               position="relative"
               top={-3}
-              color="blue.500"
               border="4px solid white"
               borderRadius="50%"
             />

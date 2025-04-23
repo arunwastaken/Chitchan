@@ -1,6 +1,6 @@
 import React from "react";
 import { Box, Text } from "@chakra-ui/react";
-import { FaReddit } from "react-icons/fa";
+import { ChitchanLogo } from "../../../components/Icons/ChitchanLogo";
 import { CommunitySnippet } from "../../../atoms/communitiesAtom";
 import MenuListItem from "./MenuListItem";
 
@@ -19,7 +19,7 @@ const Moderating: React.FC<ModeratingProps> = ({ snippets }) => {
           key={snippet.communityId}
           displayText={`r/${snippet.communityId}`}
           link={`r/${snippet.communityId}`}
-          icon={FaReddit}
+          icon={ChitchanLogo}
           iconColor="brand.100"
         />
       ))}

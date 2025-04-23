@@ -12,7 +12,6 @@ import moment from "moment";
 import { NextRouter } from "next/router";
 import { AiOutlineDelete } from "react-icons/ai";
 import { BsChat, BsDot } from "react-icons/bs";
-import { FaReddit } from "react-icons/fa";
 import {
   IoArrowDownCircleOutline,
   IoArrowDownCircleSharp,
@@ -23,6 +22,7 @@ import {
 } from "react-icons/io5";
 import { Post } from "../../../atoms/postsAtom";
 import Link from "next/link";
+import { ChitchanLogo } from "../../../components/Icons/ChitchanLogo";
 
 export type PostItemContentProps = {
   post: Post;
@@ -137,21 +137,21 @@ const PostItem: React.FC<PostItemContentProps> = ({
                       mr={2}
                     />
                   ) : (
-                    <Icon as={FaReddit} fontSize={18} mr={1} color="blue.500" />
+                    <Icon as={ChitchanLogo} fontSize={18} mr={1} color="blue.500" />
                   )}
-                  <Link href={`r/${post.communityId}`}>
+                  <Link href={`/r/${post.communityId}`}>
                     <Text
                       fontWeight={700}
                       _hover={{ textDecoration: "underline" }}
                       onClick={(event) => event.stopPropagation()}
                     >{`r/${post.communityId}`}</Text>
                   </Link>
-                  <Icon as={BsDot} color="gray.500" fontSize={8} />
+                  <Icon as={BsDot} color="gray.500" fontSize={4} />
                 </>
               )}
-              <Text color="gray.500">
-                Posted by u/{post.userDisplayText}{" "}
-                {moment(new Date(post.createdAt.seconds * 1000)).fromNow()}
+              <Text>
+                Posted by u/{post.creatorDisplayName}{" "}
+                {moment(new Date(post.createdAt?.seconds * 1000)).fromNow()}
               </Text>
             </Stack>
           )}
@@ -165,18 +165,16 @@ const PostItem: React.FC<PostItemContentProps> = ({
                 <Skeleton height="200px" width="100%" borderRadius={4} />
               )}
               <Image
-                // width="80%"
-                // maxWidth="500px"
-                maxHeight="460px"
                 src={post.imageURL}
+                maxHeight="460px"
+                alt="Post Image"
                 display={loadingImage ? "none" : "unset"}
                 onLoad={() => setLoadingImage(false)}
-                alt="Post Image"
               />
             </Flex>
           )}
         </Stack>
-        <Flex ml={1} mb={0.5} color="gray.500" fontWeight={600}>
+        <Flex ml={1} mb={0.5} color="gray.500">
           <Flex
             align="center"
             p="8px 10px"

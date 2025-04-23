@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Image } from "@chakra-ui/react";
+import { Box, Flex, Image, Text } from "@chakra-ui/react";
 import { User } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useSetRecoilState } from "recoil";
@@ -13,11 +13,10 @@ import RightContent from "./RightContent";
 import SearchInput from "./SearchInput";
 import router from "next/router";
 import useDirectory from "../../hooks/useDirectory";
+import { ChitchanLogoColored } from "../../components/Icons/ChitchanLogoColored";
 
 const Navbar: React.FC = () => {
   const [user] = useAuthState(auth);
-
-  // Use <Link> for initial build; implement directory logic near end
   const { onSelectMenuItem } = useDirectory();
 
   return (
@@ -34,12 +33,16 @@ const Navbar: React.FC = () => {
         cursor="pointer"
         onClick={() => onSelectMenuItem(defaultMenuItem)}
       >
-        <Image src="/images/redditFace.svg" height="30px" />
-        <Image
+        <ChitchanLogoColored boxSize="32px" />
+        <Text
           display={{ base: "none", md: "unset" }}
-          src="/images/redditText.svg"
-          height="46px"
-        />
+          fontSize="18px"
+          fontWeight={600}
+          color="gray.800"
+          ml={2}
+        >
+          chitchan
+        </Text>
       </Flex>
       {user && <Directory />}
       <SearchInput user={user as User} />
