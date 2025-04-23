@@ -1,8 +1,18 @@
 import React from "react";
 import { Flex, Button } from "@chakra-ui/react";
-import Link from "next/link";
+import { useRouter } from "next/router"; // Import useRouter
 
 const CommunityNotFound: React.FC = () => {
+  const router = useRouter(); // Get router instance
+
+  const handleGoHome = () => {
+    // Only push if not already on the home page
+    if (router.pathname !== "/") {
+      router.push("/");
+    }
+    // If already on home page, clicking the button does nothing
+  };
+
   return (
     <Flex
       direction="column"
@@ -11,9 +21,10 @@ const CommunityNotFound: React.FC = () => {
       minHeight="60vh"
     >
       Sorry, that community does not exist or has been banned
-      <Link href="/">
-        <Button mt={4}>GO HOME</Button>
-      </Link>
+      {/* Replace Link with Button and conditional onClick */}
+      <Button mt={4} onClick={handleGoHome}>
+        GO HOME
+      </Button>
     </Flex>
   );
 };
