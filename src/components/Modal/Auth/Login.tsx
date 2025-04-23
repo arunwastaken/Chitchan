@@ -1,10 +1,19 @@
 import React, { useState } from "react";
-import { Button, Flex, Text } from "@chakra-ui/react";
+import {
+  Button,
+  Flex,
+  Text,
+  InputGroup, // Import InputGroup
+  Input, // Import Input
+  InputRightElement, // Import InputRightElement
+  Icon, // Import Icon
+} from "@chakra-ui/react";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { ModalView } from "../../../atoms/authModalAtom";
 import { auth } from "../../../firebase/clientApp";
 import { FIREBASE_ERRORS } from "../../../firebase/errors";
 import InputItem from "../../Layout/InputItem";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"; // Import icons
 
 type LoginProps = {
   toggleView: (view: ModalView) => void;
@@ -16,6 +25,7 @@ const Login: React.FC<LoginProps> = ({ toggleView }) => {
     password: "",
   });
   const [formError, setFormError] = useState("");
+  const [showPassword, setShowPassword] = useState(false); // State for visibility
 
   const [signInWithEmailAndPassword, _, loading, authError] =
     useSignInWithEmailAndPassword(auth);
@@ -48,51 +58,50 @@ const Login: React.FC<LoginProps> = ({ toggleView }) => {
         type="text"
         mb={2}
         onChange={onChange}
+        value={form.email} // Ensure value is controlled
       />
-      <InputItem
-        name="password"
-        placeholder="password"
-        type="password"
-        onChange={onChange}
-      />
+      {/* Replace InputItem with InputGroup for password */}
+      <InputGroup size="md">
+        <Input
+          name="password"
+          placeholder="password"
+          type={showPassword ? "text" : "password"} // Conditional type
+          onChange={onChange}
+          value={form.password} // Ensure value is controlled
+          required // Added required for consistency
+          fontSize="10pt"
+          _placeholder={{ color: "gray.500" }}
+          _hover={{
+            bg: "white",
+            border: "1px solid",
+            borderColor: "blue.500",
+          }}
+          _focus={{
+            outline: "none",
+            bg: "white",
+            border: "1px solid",
+            borderColor: "blue.500",
+          }}
+          bg="gray.50"
+          mb={2} // Move mb here from InputItem
+        />
+        <InputRightElement width="4.5rem" height="100%">
+          <Button
+            h="1.75rem"
+            size="sm"
+            onClick={() => setShowPassword(!showPassword)}
+            variant="ghost" // Use ghost variant for less emphasis
+            mr={-2} // Adjust margin if needed
+          >
+            <Icon as={showPassword ? AiOutlineEyeInvisible : AiOutlineEye} />
+          </Button>
+        </InputRightElement>
+      </InputGroup>
       <Text textAlign="center" mt={2} fontSize="10pt" color="red">
         {formError ||
           FIREBASE_ERRORS[authError?.message as keyof typeof FIREBASE_ERRORS]}
       </Text>
-      <Button
-        width="100%"
-        height="36px"
-        mb={2}
-        mt={2}
-        type="submit"
-        isLoading={loading}
-      >
-        Log In
-      </Button>
-      <Flex justifyContent="center" mb={2}>
-        <Text fontSize="9pt" mr={1}>
-          Forgot your password?
-        </Text>
-        <Text
-          fontSize="9pt"
-          color="blue.500"
-          cursor="pointer"
-          onClick={() => toggleView("resetPassword")}
-        >
-          Reset
-        </Text>
-      </Flex>
-      <Flex fontSize="9pt" justifyContent="center">
-        <Text mr={1}>New here?</Text>
-        <Text
-          color="blue.500"
-          fontWeight={700}
-          cursor="pointer"
-          onClick={() => toggleView("signup")}
-        >
-          SIGN UP
-        </Text>
-      </Flex>
+// ... existing code ...
     </form>
   );
 };
