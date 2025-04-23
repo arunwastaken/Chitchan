@@ -21,15 +21,18 @@ export const Button: ComponentStyleConfig = {
   variants: {
     solid: {
       color: "white",
-      bg: "blue.500",
+      bg: "brand.100",
       _hover: {
-        bg: "blue.400",
+        bg: "brand.200",
       },
     },
     outline: {
-      color: "blue.500",
+      color: "brand.100",
       border: "1px solid",
-      borderColor: "blue.500",
+      borderColor: "brand.100",
+      _hover: {
+        bg: "brand.50",
+      },
     },
     oauth: {
       height: "34px",
@@ -37,6 +40,13 @@ export const Button: ComponentStyleConfig = {
       borderColor: "gray.300",
       _hover: {
         bg: "gray.50",
+      },
+    },
+    dark: {
+      bg: "gray.800",
+      color: "white",
+      _hover: {
+        bg: "gray.700",
       },
     },
   },

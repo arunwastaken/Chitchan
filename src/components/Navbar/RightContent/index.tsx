@@ -5,16 +5,18 @@ import AuthModal from "../../Modal/Auth";
 import AuthButtons from "./AuthButtons";
 import Icons from "./Icons";
 import MenuWrapper from "./ProfileMenu/MenuWrapper";
+import ColorModeToggle from "./ColorModeToggle";
 
 type RightContentProps = {
-  user: User;
+  user?: User | null;
 };
 
 const RightContent: React.FC<RightContentProps> = ({ user }) => {
   return (
     <>
       <AuthModal />
-      <Flex justifyContent="space-between" alignItems="center">
+      <Flex justify="center" align="center">
+        <ColorModeToggle />
         {user ? <Icons /> : <AuthButtons />}
         <MenuWrapper />
       </Flex>
