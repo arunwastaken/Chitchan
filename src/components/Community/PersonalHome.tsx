@@ -1,16 +1,19 @@
 import React from "react";
-import { Button, Flex, Icon, Stack, Text } from "@chakra-ui/react";
+import { Button, Flex, Icon, Stack, Text, useColorMode } from "@chakra-ui/react";
 import { ChitchanLogoColored } from "../../components/Icons/ChitchanLogoColored";
 
+
 const PersonalHome: React.FC = () => {
+  const { colorMode } = useColorMode();
+  
   return (
     <Flex
       direction="column"
-      bg="white"
+      bg={colorMode === "dark" ? "dark.card" : "white"}
       borderRadius={4}
       cursor="pointer"
       border="1px solid"
-      borderColor="gray.300"
+      borderColor={colorMode === "dark" ? "dark.300" : "gray.300"}
       position="sticky"
     >
       <Flex

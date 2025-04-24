@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Flex, Image, Text } from "@chakra-ui/react";
+import { Box, Flex, Image, Text, useColorMode } from "@chakra-ui/react";
 import { User } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useSetRecoilState } from "recoil";
@@ -18,13 +18,16 @@ import { ChitchanLogoColored } from "../../components/Icons/ChitchanLogoColored"
 const Navbar: React.FC = () => {
   const [user] = useAuthState(auth);
   const { onSelectMenuItem } = useDirectory();
+  const { colorMode } = useColorMode();
 
   return (
     <Flex
-      bg="white"
+      bg={colorMode === "dark" ? "dark.500" : "white"}
       height="44px"
       padding="6px 12px"
       justifyContent={{ md: "space-between" }}
+      borderBottom="1px solid"
+      borderColor={colorMode === "dark" ? "dark.300" : "gray.200"}
     >
       <Flex
         align="center"
@@ -38,7 +41,7 @@ const Navbar: React.FC = () => {
           display={{ base: "none", md: "unset" }}
           fontSize="18px"
           fontWeight={600}
-          color="gray.800"
+          color={colorMode === "dark" ? "dark.100" : "gray.800"}
           ml={2}
         >
           chitchan
@@ -50,4 +53,5 @@ const Navbar: React.FC = () => {
     </Flex>
   );
 };
+
 export default Navbar;

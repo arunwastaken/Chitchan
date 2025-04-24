@@ -10,24 +10,22 @@ export type DirectoryMenuItem = {
   imageURL?: string;
 };
 
-interface DirectoryMenuState {
+export type DirectoryMenuState = {
   isOpen: boolean;
   selectedMenuItem: DirectoryMenuItem;
-}
+};
 
 export const defaultMenuItem = {
   displayText: "Home",
   link: "/",
   icon: TiHome,
-  iconColor: "black",
-};
-
-export const defaultMenuState: DirectoryMenuState = {
-  isOpen: false,
-  selectedMenuItem: defaultMenuItem,
+  iconColor: "gray.500",
 };
 
 export const directoryMenuState = atom<DirectoryMenuState>({
-  key: "directoryMenuState_v1",
-  default: defaultMenuState,
+  key: "directoryMenuState",
+  default: {
+    isOpen: false,
+    selectedMenuItem: defaultMenuItem,
+  },
 });

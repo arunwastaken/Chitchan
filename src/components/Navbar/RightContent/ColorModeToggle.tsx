@@ -3,16 +3,12 @@ import { IconButton, useColorMode } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 
 const ColorModeToggle: React.FC = () => {
-  const { setColorMode, colorMode } = useColorMode();
+  const { toggleColorMode, colorMode } = useColorMode();
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
     setMounted(true);
   }, []);
-
-  const toggleColorMode = () => {
-    setColorMode(colorMode === "light" ? "dark" : "light");
-  };
 
   if (!mounted) return null;
 

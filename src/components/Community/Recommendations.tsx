@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Box,
   Button,
@@ -8,10 +9,10 @@ import {
   SkeletonCircle,
   Stack,
   Text,
+  useColorMode,
 } from "@chakra-ui/react";
 import { collection, getDocs, limit, orderBy, query } from "firebase/firestore";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
 import { ChitchanLogo } from "../../components/Icons/ChitchanLogo";
 import { Community } from "../../atoms/communitiesAtom";
 import { firestore } from "../../firebase/clientApp";
@@ -20,9 +21,10 @@ import useCommunityData from "../../hooks/useCommunityData";
 type RecommendationsProps = {};
 
 const Recommendations: React.FC<RecommendationsProps> = () => {
-  const [communities, setCommunities] = useState<Community[]>([]);
-  const [loading, setLoading] = useState(false);
+  const [communities, setCommunities] = React.useState<Community[]>([]);
+  const [loading, setLoading] = React.useState(false);
   const { communityStateValue, onJoinLeaveCommunity } = useCommunityData();
+  const { colorMode } = useColorMode();
 
   const getCommunityRecommendations = async () => {
     setLoading(true);
@@ -46,18 +48,18 @@ const Recommendations: React.FC<RecommendationsProps> = () => {
     setLoading(false);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     getCommunityRecommendations();
   }, []);
 
   return (
     <Flex
       direction="column"
-      bg="white"
+      bg={colorMode === "dark" ? "dark.card" : "white"}
       borderRadius={4}
       cursor="pointer"
       border="1px solid"
-      borderColor="gray.300"
+      borderColor={colorMode === "dark" ? "dark.300" : "gray.300"}
     >
       <Flex
         align="flex-end"
@@ -69,11 +71,10 @@ const Recommendations: React.FC<RecommendationsProps> = () => {
         fontWeight={600}
         bgImage="url(/images/recCommsArt.jpg)"
         backgroundSize="cover"
-        backgroundPosition="center 0px"
-        // bgGradient="linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75)),
-        // url('/images/recCommsArt.jpg')"
+        bgGradient="linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75)),
+        url('images/recCommsArt.jpg')"
       >
-        
+        Top Communities
       </Flex>
       <Flex direction="column">
         {loading ? (
@@ -104,7 +105,7 @@ const Recommendations: React.FC<RecommendationsProps> = () => {
                     align="center"
                     fontSize="10pt"
                     borderBottom="1px solid"
-                    borderColor="gray.200"
+                    borderColor={colorMode === "dark" ? "dark.300" : "gray.200"}
                     p="10px 12px"
                     fontWeight={600}
                   >

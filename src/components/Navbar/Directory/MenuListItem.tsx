@@ -1,5 +1,5 @@
 import React from "react";
-import { Flex, Icon, MenuItem, Image } from "@chakra-ui/react";
+import { Flex, Icon, Button, Image, useColorMode } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 import useDirectory from "../../../hooks/useDirectory";
 
@@ -19,11 +19,12 @@ const MenuListItem: React.FC<DirectoryItemProps> = ({
   imageURL,
 }) => {
   const { onSelectMenuItem } = useDirectory();
+  const { colorMode } = useColorMode();
+
   return (
-    <MenuItem
+    <Button
       width="100%"
-      fontSize="10pt"
-      _hover={{ bg: "gray.100" }}
+      variant="menuItem"
       onClick={() =>
         onSelectMenuItem({ displayText, link, icon, iconColor, imageURL })
       }
@@ -32,11 +33,16 @@ const MenuListItem: React.FC<DirectoryItemProps> = ({
         {imageURL ? (
           <Image borderRadius="full" boxSize="18px" src={imageURL} mr={2} />
         ) : (
-          <Icon fontSize={20} mr={2} as={icon} color={iconColor} />
+          <Icon 
+            fontSize={20} 
+            mr={2} 
+            as={icon} 
+            color={colorMode === "dark" ? "dark.200" : iconColor} 
+          />
         )}
         {displayText}
       </Flex>
-    </MenuItem>
+    </Button>
   );
 };
 export default MenuListItem;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box, Flex, Icon, MenuItem, Text } from "@chakra-ui/react";
+import { Box, Flex, Icon, MenuItem, Text, useColorMode, Button } from "@chakra-ui/react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { GrAdd } from "react-icons/gr";
 import { useRecoilValue } from "recoil";
@@ -17,6 +17,7 @@ const Communities: React.FC<CommunitiesProps> = ({ menuOpen }) => {
   const [user] = useAuthState(auth);
   const [open, setOpen] = useState(false);
   const mySnippets = useRecoilValue(communityState).mySnippets;
+  const { colorMode } = useColorMode();
 
   return (
     <>
@@ -29,8 +30,14 @@ const Communities: React.FC<CommunitiesProps> = ({ menuOpen }) => {
       {/* <Moderating snippets={snippetState.filter((item) => item.isModerator)} />
       <MyCommunities snippets={snippetState} setOpen={setOpen} /> */}
       {mySnippets.find((item) => item.isModerator) && (
-        <Box mt={3} mb={4}>
-          <Text pl={3} mb={1} fontSize="7pt" fontWeight={500} color="gray.500">
+        <Box mt={3} mb={4} maxW="200px" mx="auto">
+          <Text 
+            pl={3} 
+            mb={1} 
+            fontSize="7pt" 
+            fontWeight={500} 
+            color={colorMode === "dark" ? "dark.200" : "gray.500"}
+          >
             MODERATING
           </Text>
           {mySnippets
@@ -41,33 +48,45 @@ const Communities: React.FC<CommunitiesProps> = ({ menuOpen }) => {
                 displayText={`r/${snippet.communityId}`}
                 link={`/r/${snippet.communityId}`}
                 icon={ChitchanLogo}
-                iconColor="brand.100"
+                iconColor={colorMode === "dark" ? "dark.200" : "brand.100"}
               />
             ))}
         </Box>
       )}
-      <Box mt={3} mb={4}>
-        <Text pl={3} mb={1} fontSize="7pt" fontWeight={500} color="gray.500">
+      <Box mt={3} mb={4} maxW="200px" mx="auto">
+        <Text 
+          pl={3} 
+          mb={1} 
+          fontSize="7pt" 
+          fontWeight={500} 
+          color={colorMode === "dark" ? "dark.200" : "gray.500"}
+        >
           MY COMMUNITIES
         </Text>
-        <MenuItem
+        <Button
           width="100%"
           fontSize="10pt"
-          _hover={{ bg: "gray.100" }}
+          variant="menuItem"
           onClick={() => setOpen(true)}
         >
           <Flex alignItems="center">
-            <Icon fontSize={20} mr={2} as={GrAdd} />
+            <Icon 
+              fontSize={20} 
+              mr={2} 
+              as={GrAdd} 
+              color={colorMode === "dark" ? "dark.200" : "inherit"}
+              filter={colorMode === "dark" ? "invert(1)" : "none"}
+            />
             Create Community
           </Flex>
-        </MenuItem>
+        </Button>
         {mySnippets.map((snippet) => (
           <MenuListItem
             key={snippet.communityId}
             icon={ChitchanLogo}
             displayText={`r/${snippet.communityId}`}
             link={`/r/${snippet.communityId}`}
-            iconColor="blue.500"
+            iconColor={colorMode === "dark" ? "dark.200" : "brand.100"}
             imageURL={snippet.imageURL}
           />
         ))}

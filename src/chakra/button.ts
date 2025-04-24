@@ -15,7 +15,6 @@ export const Button: ComponentStyleConfig = {
     },
     md: {
       fontSize: "10pt",
-      // height: "28px",
     },
   },
   variants: {
@@ -25,6 +24,13 @@ export const Button: ComponentStyleConfig = {
       _hover: {
         bg: "brand.200",
       },
+      _dark: {
+        bg: "dark.200",
+        color: "dark.100",
+        _hover: {
+          bg: "dark.400",
+        },
+      },
     },
     outline: {
       color: "brand.100",
@@ -32,6 +38,14 @@ export const Button: ComponentStyleConfig = {
       borderColor: "brand.100",
       _hover: {
         bg: "brand.50",
+      },
+      _dark: {
+        color: "dark.200",
+        borderColor: "dark.300",
+        _hover: {
+          bg: "dark.400",
+          borderColor: "dark.200",
+        },
       },
     },
     oauth: {
@@ -41,12 +55,38 @@ export const Button: ComponentStyleConfig = {
       _hover: {
         bg: "gray.50",
       },
+      _dark: {
+        borderColor: "dark.300",
+        _hover: {
+          bg: "dark.400",
+        },
+      },
     },
     dark: {
-      bg: "gray.800",
-      color: "white",
+      bg: "dark.500",
+      color: "dark.100",
       _hover: {
-        bg: "gray.700",
+        bg: "dark.400",
+      },
+    },
+    menuItem: {
+      height: "auto",
+      width: "95%",
+      margin: "0 auto",
+      fontSize: "10pt",
+      justifyContent: "flex-start",
+      bg: "transparent",
+      color: "gray.500",
+      fontWeight: 500,
+      padding: "4px 8px",
+      _hover: {
+        bg: "gray.100",
+      },
+      _dark: {
+        color: "whiteAlpha.700",
+        _hover: {
+          bg: "dark.400",
+        },
       },
     },
   },

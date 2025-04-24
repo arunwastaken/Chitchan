@@ -9,6 +9,7 @@ import {
   MenuList,
   Text,
   Image,
+  useColorMode,
 } from "@chakra-ui/react";
 import useDirectory from "../../../hooks/useDirectory";
 import Communities from "./Communities";
@@ -16,6 +17,7 @@ import Communities from "./Communities";
 const Directory: React.FC = () => {
   const [open, setOpen] = useState(false);
   const handleClose = () => setOpen(false);
+  const { colorMode } = useColorMode();
 
   const { directoryState, toggleMenuOpen } = useDirectory();
 
@@ -27,7 +29,11 @@ const Directory: React.FC = () => {
             cursor="pointer"
             padding="0px 6px"
             borderRadius="4px"
-            _hover={{ outline: "1px solid", outlineColor: "gray.200" }}
+            _hover={{ 
+              bg: colorMode === "dark" ? "dark.400" : "gray.50",
+              outline: "1px solid", 
+              outlineColor: colorMode === "dark" ? "dark.300" : "gray.200" 
+            }}
             mr={2}
             ml={{ base: 0, md: 2 }}
             onClick={toggleMenuOpen}
@@ -50,7 +56,7 @@ const Directory: React.FC = () => {
                     <Icon
                       fontSize={24}
                       mr={{ base: 1, md: 2 }}
-                      color={directoryState.selectedMenuItem.iconColor}
+                      color={colorMode === "dark" ? "dark.200" : directoryState.selectedMenuItem.iconColor}
                       as={directoryState.selectedMenuItem.icon}
                     />
                   )}
@@ -59,16 +65,22 @@ const Directory: React.FC = () => {
                     flexDirection="column"
                     fontSize="10pt"
                   >
-                    <Text fontWeight={600}>
+                    <Text fontWeight={600} color={colorMode === "dark" ? "dark.100" : "inherit"}>
                       {directoryState.selectedMenuItem.displayText}
                     </Text>
                   </Box>
                 </>
               </Flex>
-              <ChevronDownIcon color="gray.500" />
+              <ChevronDownIcon color={colorMode === "dark" ? "dark.200" : "gray.500"} />
             </Flex>
           </MenuButton>
-          <MenuList maxHeight="300px" overflow="scroll" overflowX="hidden">
+          <MenuList 
+            maxHeight="300px" 
+            overflow="scroll" 
+            overflowX="hidden"
+            bg={colorMode === "dark" ? "dark.500" : "white"}
+            borderColor={colorMode === "dark" ? "dark.300" : "gray.200"}
+          >
             <Communities menuOpen={isOpen} />
           </MenuList>
         </>
