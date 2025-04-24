@@ -34,3 +34,46 @@ export const deletePostComments = functions.firestore
         console.log("Error deleting post comments");
       });
   });
+
+export const updateUserProfile = functions.https.onCall(async (data, context) => {
+  if (!context.auth) {
+    throw new functions.https.HttpsError(
+      'unauthenticated',
+      'User must be authenticated to update profile'
+    );
+  }
+
+  const { displayName, bio, location, website, socialLinks, avatarURL } = data;
+  const userId = context.auth.uid;
+
+  try {
+    const userRef = db.collection('users').doc(userId);
+    const userDoc = await userRef.get();
+
+    if (!userDoc.exists) {
+      throw new functions.https.HttpsError(
+        'not-found',
+        'User profile not found'
+      );
+    }
+
+    const updateData: any = {};
+    if (displayName) updateData.displayName = displayName;
+    if (bio) updateData.bio = bio;
+    if (location) updateData.location = location;
+    if (website) updateData.website = website;
+    if (socialLinks) updateData.socialLinks = socialLinks;
+    if (avatarURL) updateData.avatarURL = avatarURL;
+    updateData.updatedAt = admin.firestore.FieldValue.serverTimestamp();
+
+    await userRef.update(updateData);
+
+    return { success: true, message: 'Profile updated successfully' };
+  } catch (error) {
+    throw new functions.https.HttpsError(
+      'internal',
+      'Error updating user profile',
+      error
+    );
+  }
+});
