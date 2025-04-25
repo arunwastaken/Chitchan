@@ -26,7 +26,7 @@ export const Input: ComponentStyleConfig = {
   sizes: {
     md: {
       field: {
-        // height: "30px",
+        // height: "30px"
         fontSize: "10pt",
       },
     },
