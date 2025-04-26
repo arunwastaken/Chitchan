@@ -111,7 +111,6 @@ const UserProfilePage: React.FC = () => {
                 bg: colorMode === "dark" ? "#272729" : "gray.50"
               }}
               onClick={() => router.push("/profile/settings")}
-              fontWeight="medium"
             >
               Profile Settings
             </Button>
