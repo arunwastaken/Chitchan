@@ -32,7 +32,7 @@ export default function ProfileSettingsPage() {
       <Box mb={8}>
         <Heading size="lg">Profile Settings</Heading>
         <Text color="gray.500" mt={2}>
-          Customize your profile and preferences :
+          Customize your profile and preferences
         </Text>
       </Box>
       <ProfileSettings />
