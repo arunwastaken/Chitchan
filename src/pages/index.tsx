@@ -188,7 +188,7 @@ const Home: NextPage = () => {
     if (!user?.uid || !postStateValue.posts.length) return;
     getUserPostVotes();
 
-    // Clear postVotes on dismount
+    // Clear postVotes on Dismount
     return () => {
       setPostStateValue((prev) => ({
         ...prev,
