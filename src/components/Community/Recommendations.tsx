@@ -21,7 +21,6 @@ import useCommunityData from "../../hooks/useCommunityData";
 
 type RecommendationsProps = {};
 
-
 const Recommendations: React.FC<RecommendationsProps> = () => {
   const [communities, setCommunities] = React.useState<Community[]>([]);
   const [loading, setLoading] = React.useState(false);
@@ -53,7 +52,6 @@ const Recommendations: React.FC<RecommendationsProps> = () => {
   React.useEffect(() => {
     getCommunityRecommendations();
   }, []);
-
   
   return (
     <Flex
@@ -170,8 +168,3 @@ const Recommendations: React.FC<RecommendationsProps> = () => {
   );
 };
 export default Recommendations;
-
-
-
-
-
