@@ -31,7 +31,8 @@ export const deletePostComments = functions.firestore
             doc.ref.delete();
           }
         });
-        // Audit log for post deletion
+        // Audit log for post deletion 
+        
         await logAuditAction({
           action: 'delete_post',
           targetId: postId,
@@ -87,3 +88,4 @@ export const updateUserProfile = functions.https.onCall(async (data, context) =>
     );
   }
 });
+
