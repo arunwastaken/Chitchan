@@ -31,13 +31,12 @@ const Posts: React.FC<PostsProps> = ({
   userId,
   loadingUser,
 }) => {
-  /**
-   * PART OF INITIAL SOLUTION BEFORE CUSTOM HOOK
-   */
+
   const [loading, setLoading] = useState(false);
   // const setAuthModalState = useSetRecoilState(authModalState);
   const router = useRouter();
 
+  
   const { postStateValue, setPostStateValue, onVote, onDeletePost } = usePosts(
     communityData!
   );
@@ -65,6 +64,7 @@ const Posts: React.FC<PostsProps> = ({
   //     (item: PostVote) => item.postId === post.id
   //   );
 
+  
   //   try {
   //     let voteChange = vote;
   //     const batch = writeBatch(firestore);
@@ -148,6 +148,7 @@ const Posts: React.FC<PostsProps> = ({
   //   }
   // };
 
+  
   // const getUserPostVotes = async () => {
   //   try {
   //     const postVotesQuery = query(
@@ -250,6 +251,7 @@ const Posts: React.FC<PostsProps> = ({
 
   console.log("HERE IS POST STATE", postStateValue);
 
+  
   return (
     <>
       {loading ? (
@@ -277,3 +279,4 @@ const Posts: React.FC<PostsProps> = ({
   );
 };
 export default Posts;
+
