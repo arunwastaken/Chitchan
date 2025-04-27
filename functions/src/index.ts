@@ -1,5 +1,6 @@
 import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
+import { logAuditAction } from "./auditLog";
 
 admin.initializeApp();
 const db = admin.firestore();
@@ -14,20 +15,29 @@ export const createUserDocument = functions.auth
 
 export const deletePostComments = functions.firestore
   .document(`posts/{postId}`)
-  .onDelete(async (snap) => {
+  .onDelete(async (snap, context) => {
     const postId = snap.id;
+    const deletedBy = context.auth?.uid || 'system';
     console.log("HERE IS POST ID", postId);
 
     admin
       .firestore()
       .collection("comments")
       .get()
-      .then((snapshot) => {
+      .then(async (snapshot) => {
         snapshot.forEach((doc) => {
           if (doc.data().postId === postId) {
             console.log("DELETING COMMENT: ", doc.id, doc.data().text);
             doc.ref.delete();
           }
+        });
+        // Audit log for post deletion
+        await logAuditAction({
+          action: 'delete_post',
+          targetId: postId,
+          targetType: 'post',
+          performedBy: deletedBy,
+          reason: 'Post deleted (and comments cleaned up)',
         });
       })
       .catch((error) => {
