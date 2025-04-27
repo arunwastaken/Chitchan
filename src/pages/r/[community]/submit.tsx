@@ -35,7 +35,7 @@ const CreateCommmunityPostPage: NextPage = () => {
     <PageContentLayout maxWidth="1060px">
       <>
         <Box p="14px 0px" borderBottom="1px solid" borderColor="white">
-          <Text fontWeight={600}>Create a post...</Text>
+          <Text fontWeight={600}>Create a post</Text>
         </Box>
         {user && (
           <NewPostForm
