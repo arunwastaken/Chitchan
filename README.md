@@ -40,7 +40,7 @@ Chitchan is a modern social media platform built with Next.js, Firebase, and Cha
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/chitchan.git
+   git clone https://github.com/DivyanshVerma0/chitchan.git
    cd chitchan
    ```
 
