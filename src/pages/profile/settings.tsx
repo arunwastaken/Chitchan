@@ -18,7 +18,7 @@ export default function ProfileSettingsPage() {
   if (loading) {
     return (
       <Container maxW="container.md" py={8}>
-        <Text>Loading...</Text>
+        <Text>Loading</Text>
       </Container>
     );
   }
