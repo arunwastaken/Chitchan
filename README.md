@@ -174,3 +174,4 @@ For support, email your-email@example.com or join our Slack channel.
 ---
 
 Made with ❤️ by [DivyanshVerma0](https://github.com/DivyanshVerma0/)
+Made with more ❤️ by [anantnotfound](https://github.com/anantnotfound)
