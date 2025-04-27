@@ -7,5 +7,5 @@ const nextConfig = {
   reactStrictMode: true,
 }
 
-// Exports the configuration so that Next.js can use it. gg
+// Exports the configuration so that Next.js can use it. ggggg
 module.exports = nextConfig

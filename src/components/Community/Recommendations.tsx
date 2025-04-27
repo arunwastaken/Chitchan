@@ -18,7 +18,9 @@ import { Community } from "../../atoms/communitiesAtom";
 import { firestore } from "../../firebase/clientApp";
 import useCommunityData from "../../hooks/useCommunityData";
 
+
 type RecommendationsProps = {};
+
 
 const Recommendations: React.FC<RecommendationsProps> = () => {
   const [communities, setCommunities] = React.useState<Community[]>([]);
@@ -52,6 +54,7 @@ const Recommendations: React.FC<RecommendationsProps> = () => {
     getCommunityRecommendations();
   }, []);
 
+  
   return (
     <Flex
       direction="column"
@@ -167,3 +170,8 @@ const Recommendations: React.FC<RecommendationsProps> = () => {
   );
 };
 export default Recommendations;
+
+
+
+
+

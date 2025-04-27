@@ -64,6 +64,7 @@ type NewPostFormProps = {
   user: User;
 };
 
+
 const NewPostForm: React.FC<NewPostFormProps> = ({
   communityId,
   communityImageURL,
@@ -111,7 +112,7 @@ const NewPostForm: React.FC<NewPostFormProps> = ({
         console.log("HERE IS DOWNLOAD URL", downloadURL);
       }
 
-      // Clear the cache to cause a refetch of the posts
+      
       setPostItems((prev) => ({
         ...prev,
         postUpdateRequired: true,
@@ -137,6 +138,7 @@ const NewPostForm: React.FC<NewPostFormProps> = ({
     };
   };
 
+  
   const onTextChange = ({
     target: { name, value },
   }: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -181,3 +183,9 @@ const NewPostForm: React.FC<NewPostFormProps> = ({
   );
 };
 export default NewPostForm;
+
+
+
+
+
+
