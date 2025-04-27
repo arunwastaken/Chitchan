@@ -2,7 +2,6 @@ import React from "react";
 import { Button, Flex, Icon, Stack, Text, useColorMode } from "@chakra-ui/react";
 import { ChitchanLogoColored } from "../../components/Icons/ChitchanLogoColored";
 
-
 const PersonalHome: React.FC = () => {
   const { colorMode } = useColorMode();
   
@@ -47,3 +46,4 @@ const PersonalHome: React.FC = () => {
 };
 
 export default PersonalHome;
+
