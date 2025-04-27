@@ -162,19 +162,15 @@ For support, email your-email@example.com or join our Slack channel.
 
 ## 🎯 Future Improvements
 
-- [ ] Dark Mode
-- [ ] User Profiles
 - [ ] Chat System
 - [ ] Notifications
 - [ ] Post Awards
 - [ ] Mobile App
 - [ ] Search Functionality
 - [ ] Trending Posts
-
-i 
 - [ ] Community Rules
 - [ ] Moderation Tools
 
 ---
 
-Made with ❤️ by [Your Name](https://github.com/your-username)
+Made with ❤️ by [DivyanshVerma0](https://github.com/DivyanshVerma0/)
