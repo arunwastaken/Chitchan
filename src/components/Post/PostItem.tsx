@@ -41,6 +41,7 @@ type PostItemProps = {
   homePage?: boolean;
 };
 
+
 const PostItem: React.FC<PostItemProps> = ({
   post,
   userIsCreator,
@@ -70,15 +71,18 @@ const PostItem: React.FC<PostItemProps> = ({
       }
     } catch (error: any) {
       console.log("Error deleting post", error.message);
+      
       /**
        * Don't need to setLoading false if no error
        * as item will be removed from DOM
        */
+      
       setLoadingDelete(false);
-      // setError
+      
     }
   };
 
+  
   return (
     <Flex
       border="1px solid"
@@ -231,3 +235,4 @@ const PostItem: React.FC<PostItemProps> = ({
 };
 
 export default PostItem; 
+
