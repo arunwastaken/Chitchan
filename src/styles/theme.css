@@ -13,6 +13,7 @@
   --shadow-color: rgba(0, 0, 0, 0.1);
 }
 
+
 [data-theme='dark'] {
   --bg-main: #1a202c;
   --bg-secondary: #2d3748;
@@ -98,6 +99,7 @@ button {
 .chakra-modal__content {
   background-color: var(--bg-card) !important;
 }
+
 
 /* Ensure no transparency in dropdowns */
 .chakra-menu__menu-list {
