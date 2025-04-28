@@ -25,7 +25,7 @@ const CreateCommmunityPostPage: NextPage = () => {
    */
   useEffect(() => {
     if (!user && !loadingUser && communityStateValue.currentCommunity.id) {
-      router.push(`/r/${communityStateValue.currentCommunity.id}`);
+      router.push(`/c/${communityStateValue.currentCommunity.id}`);
     }
   }, [user, loadingUser, communityStateValue.currentCommunity]);
 

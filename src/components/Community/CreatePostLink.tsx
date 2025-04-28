@@ -25,7 +25,7 @@ const CreatePostLink: React.FC<CreatePostProps> = () => {
       toggleMenuOpen();
       return;
     }
-    router.push(`/r/${router.query.community}/submit`);
+    router.push(`/c/${router.query.community}/submit`);
   };
 
   
