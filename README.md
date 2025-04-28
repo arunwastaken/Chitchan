@@ -158,7 +158,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support
 
-For support, email your-email@example.com or join our Slack channel.
+For support, email divyansh_verma@icloud.com or join our Slack channel.
 
 ## 🎯 Future Improvements
 
