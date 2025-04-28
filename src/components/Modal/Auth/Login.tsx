@@ -101,6 +101,16 @@ const Login: React.FC<LoginProps> = ({ toggleView }) => {
         {formError ||
           FIREBASE_ERRORS[authError?.message as keyof typeof FIREBASE_ERRORS]}
       </Text>
+      <Button
+        width="100%"
+        height="36px"
+        mb={2}
+        mt={2}
+        type="submit"
+        isLoading={loading}
+      >
+        Log In
+      </Button>
       {/* Rest of the form content */}
     </form>
   );
