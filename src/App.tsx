@@ -5,6 +5,7 @@ import { RecoilRoot } from "recoil";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./styles/theme.css";
 
+
 function App() {
   return (
     <RecoilRoot>
@@ -20,5 +21,6 @@ function App() {
     </RecoilRoot>
   );
 }
+
 
 export default App; 
