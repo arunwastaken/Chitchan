@@ -46,7 +46,7 @@ const Home: NextPage = () => {
     setLoading(true);
     try {
       /**
-       * if snippets has no length (i.e. user not in any communities yet)
+       * If snippets has no length (i.e. user not in any communities yet)
        * do query for 20 posts ordered by voteStatus
        */
       const feedPosts: Post[] = [];
