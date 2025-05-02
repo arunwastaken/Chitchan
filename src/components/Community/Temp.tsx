@@ -10,7 +10,6 @@ import { authModalState } from "../../atoms/authModalAtom";
 import { auth } from "../../firebase/clientApp";
 import { ChitchanLogo } from "../../components/Icons/ChitchanLogo";
 
-
 const CreatePostLink: React.FC = () => {
   const router = useRouter();
   const [user] = useAuthState(auth);
@@ -73,10 +72,3 @@ const CreatePostLink: React.FC = () => {
   );
 };
 export default CreatePostLink;
-
-
-
-
-
-
-
