@@ -3,17 +3,16 @@ import {
   Button,
   Flex,
   Text,
-  InputGroup, // Import InputGroup
-  Input, // Import Input
-  InputRightElement, // Import InputRightElement
-  Icon, // Import Icon
+  InputGroup,
+  Input,
+  InputRightElement,
+  Icon,
 } from "@chakra-ui/react";
-import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { ModalView } from "../../../atoms/authModalAtom";
-import { auth } from "../../../firebase/clientApp";
 import { FIREBASE_ERRORS } from "../../../firebase/errors";
 import InputItem from "../../Layout/InputItem";
-import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai"; // Import icons
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
+import { loginWithEmaiAndPassword } from "../../../firebase/authFunctions";
 
 type LoginProps = {
   toggleView: (view: ModalView) => void;
@@ -25,20 +24,30 @@ const Login: React.FC<LoginProps> = ({ toggleView }) => {
     password: "",
   });
   const [formError, setFormError] = useState("");
-  const [showPassword, setShowPassword] = useState(false); // State for visibility
+  const [showPassword, setShowPassword] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const [signInWithEmailAndPassword, _, loading, authError] =
-    useSignInWithEmailAndPassword(auth);
-
-  const onSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (formError) setFormError("");
+    
+    // Basic validation
     if (!form.email.includes("@")) {
       return setFormError("Please enter a valid email");
     }
+    if (form.password.length < 6) {
+      return setFormError("Password must be at least 6 characters");
+    }
 
-    // Valid form inputs
-    signInWithEmailAndPassword(form.email, form.password);
+    try {
+      setLoading(true);
+      await loginWithEmaiAndPassword(form.email, form.password);
+      // If login is successful, the auth state will be updated automatically
+    } catch (error: any) {
+      setFormError(FIREBASE_ERRORS[error?.message as keyof typeof FIREBASE_ERRORS] || "Failed to log in");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const onChange = ({
@@ -58,17 +67,16 @@ const Login: React.FC<LoginProps> = ({ toggleView }) => {
         type="text"
         mb={2}
         onChange={onChange}
-        value={form.email} // Ensure value is controlled
+        value={form.email}
       />
-      {/* Replace InputItem with InputGroup for password */}
       <InputGroup size="md">
         <Input
           name="password"
           placeholder="password"
-          type={showPassword ? "text" : "password"} // Conditional type
+          type={showPassword ? "text" : "password"}
           onChange={onChange}
-          value={form.password} // Ensure value is controlled
-          required // Added required for consistency
+          value={form.password}
+          required
           fontSize="10pt"
           _placeholder={{ color: "gray.500" }}
           _hover={{
@@ -83,25 +91,33 @@ const Login: React.FC<LoginProps> = ({ toggleView }) => {
             borderColor: "blue.500",
           }}
           bg="gray.50"
-          mb={2} // Move mb here from InputItem
+          mb={2}
         />
         <InputRightElement width="4.5rem" height="100%">
           <Button
             h="1.75rem"
             size="sm"
             onClick={() => setShowPassword(!showPassword)}
-            variant="ghost" // Use ghost variant for less emphasis
-            mr={-2} // Adjust margin if needed
+            variant="ghost"
+            mr={-2}
           >
             <Icon as={showPassword ? AiOutlineEyeInvisible : AiOutlineEye} />
           </Button>
         </InputRightElement>
       </InputGroup>
       <Text textAlign="center" mt={2} fontSize="10pt" color="red">
-        {formError ||
-          FIREBASE_ERRORS[authError?.message as keyof typeof FIREBASE_ERRORS]}
+        {formError}
       </Text>
-      {/* Rest of the form content */}
+      <Button
+        width="100%"
+        height="36px"
+        mb={2}
+        mt={2}
+        type="submit"
+        isLoading={loading}
+      >
+        Log In
+      </Button>
     </form>
   );
 };
