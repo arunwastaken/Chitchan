@@ -120,16 +120,15 @@ export const ProfileSettings = () => {
   };
 
   return (
-    <Box maxW={["100%", "600px"]} mx="auto" p={[2, 4]}>
-      <form onSubmit={handleSubmit} aria-label="Profile Settings Form">
-        <VStack spacing={[2, 4]} align="stretch">
+    <Box maxW="600px" mx="auto" p={4}>
+      <form onSubmit={handleSubmit}>
+        <VStack spacing={4} align="stretch">
           <Box textAlign="center">
             <Box position="relative" display="inline-block">
               <Avatar
-                size={["lg", "2xl"]}
+                size="2xl"
                 src={profile.avatarURL}
                 name={profile.displayName}
-                aria-label="User avatar"
               />
               <input
                 type="file"
@@ -201,8 +200,8 @@ export const ProfileSettings = () => {
             )}
           </FormControl>
 
-          <Text fontWeight="bold" mt={4} fontSize={["md", "lg"]}>Social Links</Text>
-          <VStack spacing={[1, 2]}>
+          <Text fontWeight="bold" mt={4}>Social Links</Text>
+          <VStack spacing={2}>
             <FormControl>
               <FormLabel>Twitter</FormLabel>
               <Input
@@ -229,15 +228,14 @@ export const ProfileSettings = () => {
             </FormControl>
           </VStack>
 
-          <Text fontWeight="bold" mt={4} fontSize={["md", "lg"]}>Preferences</Text>
-          <VStack spacing={[1, 2]}>
+          <Text fontWeight="bold" mt={4}>Preferences</Text>
+          <VStack spacing={2}>
             <FormControl display="flex" alignItems="center">
               <FormLabel mb="0">Email Notifications</FormLabel>
               <Switch
                 isChecked={profile.preferences?.emailNotifications}
                 onChange={(e) => handlePreferenceChange('emailNotifications', e.target.checked)}
                 isDisabled={!isEditing}
-                aria-label="Email Notifications"
               />
             </FormControl>
             <FormControl display="flex" alignItems="center">
@@ -246,7 +244,6 @@ export const ProfileSettings = () => {
                 isChecked={profile.preferences?.pushNotifications}
                 onChange={(e) => handlePreferenceChange('pushNotifications', e.target.checked)}
                 isDisabled={!isEditing}
-                aria-label="Push Notifications"
               />
             </FormControl>
             <FormControl display="flex" alignItems="center">
@@ -255,12 +252,11 @@ export const ProfileSettings = () => {
                 isChecked={profile.preferences?.darkMode}
                 onChange={(e) => handlePreferenceChange('darkMode', e.target.checked)}
                 isDisabled={!isEditing}
-                aria-label="Dark Mode"
               />
             </FormControl>
           </VStack>
 
-          <HStack spacing={4} mt={4} flexDirection={["column", "row"]} align="stretch">
+          <HStack spacing={4} mt={4}>
             {isEditing ? (
               <>
                 <Button
@@ -268,8 +264,6 @@ export const ProfileSettings = () => {
                   colorScheme="blue"
                   isLoading={loading}
                   loadingText="Saving..."
-                  aria-label="Save Changes"
-                  width={["100%", "auto"]}
                 >
                   Save Changes
                 </Button>
@@ -279,8 +273,6 @@ export const ProfileSettings = () => {
                     loadProfile();
                   }}
                   variant="ghost"
-                  aria-label="Cancel Edit"
-                  width={["100%", "auto"]}
                 >
                   Cancel
                 </Button>
@@ -289,8 +281,6 @@ export const ProfileSettings = () => {
               <Button
                 onClick={() => setIsEditing(true)}
                 colorScheme="blue"
-                aria-label="Edit Profile"
-                width={["100%", "auto"]}
               >
                 Edit Profile
               </Button>
@@ -300,4 +290,4 @@ export const ProfileSettings = () => {
       </form>
     </Box>
   );
-}; 
+};
