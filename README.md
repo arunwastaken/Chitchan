@@ -156,7 +156,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Chakra UI](https://chakra-ui.com/)
 - [Chitchan](https://github.com/DivyanshVerma0/Chitchan) for inspiration
 
-## 📞 Support
+## 📞 Support...
 
 For support, email divyansh_verma@icloud.com.
 
@@ -173,4 +173,7 @@ For support, email divyansh_verma@icloud.com.
 
 ---
 
+
 made with love by a^4+d
+
+
