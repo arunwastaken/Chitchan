@@ -68,20 +68,27 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
           throw new Error(`Sorry, /r${name} is taken. Try another.`);
         }
 
+        // Create community document
         transaction.set(communityDocRef, {
           creatorId: userId,
           createdAt: serverTimestamp(),
           numberOfMembers: 1,
           privacyType: communityType,
           imageURL: "",
+          name: name,
+          description: "",
+          rules: [],
+          moderators: [userId],
         });
 
+        // Create community snippet for creator
         transaction.set(
           doc(firestore, `users/${userId}/communitySnippets`, name),
           {
             communityId: name,
             isModerator: true,
             imageURL: "",
+            name: name,
           }
         );
       });
@@ -95,6 +102,7 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
             communityId: name,
             isModerator: true,
             imageURL: "",
+            name: name,
           },
         ],
       }));

@@ -1,14 +1,34 @@
-import React, { useState } from "react";
-import { useFirestore } from "react-redux-firebase";
-import { doc, writeBatch, increment } from "firebase/firestore";
+import React, { useState, useEffect } from "react";
+import { doc, writeBatch, increment, getDoc } from "firebase/firestore";
 import { useAuth } from "../../../contexts/AuthContext";
 import { useCommunitySnippets } from "../../../contexts/CommunitySnippetsContext";
+import { useAuthModalState } from "../../../atoms/authModalAtom";
+import { firestore } from "../../../firebase/clientApp";
+import { Button } from "@chakra-ui/react";
 
 const JoinButton: React.FC<{ communityId: string; communityImageURL?: string }> = ({ communityId, communityImageURL }) => {
-  const firestore = useFirestore();
   const { user } = useAuth();
-  const { setSnippetState } = useCommunitySnippets();
+  const { setSnippetState, snippetState } = useCommunitySnippets();
+  const setAuthModalState = useAuthModalState((state) => state.setAuthModalState);
   const [isJoined, setIsJoined] = useState(false);
+  const [loading, setLoading] = useState(false);
+
+  useEffect(() => {
+    if (!user) return;
+    
+    const checkIfJoined = async () => {
+      try {
+        const snippetDoc = await getDoc(
+          doc(firestore, `users/${user?.uid}/communitySnippets`, communityId)
+        );
+        setIsJoined(!!snippetDoc.exists());
+      } catch (error) {
+        console.log("checkIfJoined error", error);
+      }
+    };
+    
+    checkIfJoined();
+  }, [user, communityId]);
 
   const onJoinOrLeaveCommunity = async (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     event.stopPropagation();
@@ -18,6 +38,7 @@ const JoinButton: React.FC<{ communityId: string; communityImageURL?: string }> 
       return;
     }
 
+    setLoading(true);
     try {
       const batch = writeBatch(firestore);
 
@@ -38,6 +59,7 @@ const JoinButton: React.FC<{ communityId: string; communityImageURL?: string }> 
             (item) => item.communityId !== communityId
           ),
         }));
+        setIsJoined(false);
       } else {
         // Join community
         const newSnippet = {
@@ -62,14 +84,26 @@ const JoinButton: React.FC<{ communityId: string; communityImageURL?: string }> 
           ...prev,
           mySnippets: [...prev.mySnippets, newSnippet],
         }));
+        setIsJoined(true);
       }
     } catch (error) {
       console.log("onJoinOrLeaveCommunity error", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
-    <div onClick={onJoinOrLeaveCommunity}>Join</div>
+    <Button
+      height="30px"
+      pr={6}
+      pl={6}
+      isLoading={loading}
+      onClick={onJoinOrLeaveCommunity}
+      variant={isJoined ? "outline" : "solid"}
+    >
+      {isJoined ? "Joined" : "Join"}
+    </Button>
   );
 };
 

@@ -97,8 +97,8 @@ const PostItem: React.FC<PostItemProps> = ({ post, userIsCreator, userVoteValue,
           voteValue: vote,
         });
 
-        updatedPost.voteStatus = post.voteStatus.map((vote) =>
-          vote.userId === user?.uid ? { ...vote, voteValue: vote } : vote
+        updatedPost.voteStatus = post.voteStatus.map((voteItem) =>
+          voteItem.userId === user?.uid ? { ...voteItem, voteValue: vote } : voteItem
         );
         voteChange = 2 * vote;
       }
