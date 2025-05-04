@@ -20,6 +20,26 @@ const UserProfilePage: React.FC = () => {
 
   return (
     <Flex direction="column" width="100%" maxWidth="975px" mx="auto" pt={3}>
+      {user && (
+        <Box 
+          mb={4} 
+          p={3} 
+          bg={colorMode === "dark" ? "#1A1A1B" : "gray.100"}
+          color={colorMode === "dark" ? "#D7DADC" : "gray.800"}
+          borderRadius="md" 
+          textAlign="center"
+          cursor="pointer"
+          onClick={() => router.push("/profile/settings")}
+          _hover={{ 
+            bg: colorMode === "dark" ? "#272729" : "gray.200",
+            borderColor: colorMode === "dark" ? "#D7DADC" : "gray.400"
+          }}
+          border="1px solid"
+          borderColor={colorMode === "dark" ? "#343536" : "gray.200"}
+        >
+          <Text fontWeight="bold">Click here to go to Profile Settings</Text>
+        </Box>
+      )}
       <Box
         bg={colorMode === "dark" ? "#1A1A1B" : "white"}
         borderRadius="4px"
@@ -81,6 +101,20 @@ const UserProfilePage: React.FC = () => {
           >
             Share Profile
           </Button>
+          {user && (
+            <Button 
+              variant="outline" 
+              size="sm"
+              color={colorMode === "dark" ? "#D7DADC" : "inherit"}
+              borderColor={colorMode === "dark" ? "#343536" : "inherit"}
+              _hover={{
+                bg: colorMode === "dark" ? "#272729" : "gray.50"
+              }}
+              onClick={() => router.push("/profile/settings")}
+            >
+              Profile Settings
+            </Button>
+          )}
         </Stack>
 
         {/* Karma and Other Stats */}
@@ -102,7 +136,7 @@ const UserProfilePage: React.FC = () => {
         </Flex>
       </Box>
 
-      {/* Posts Section */}
+      {/* Posts Section  */}
       <Box 
         mt={4} 
         p={4} 

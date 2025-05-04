@@ -48,10 +48,11 @@ const Recommendations: React.FC<RecommendationsProps> = () => {
     setLoading(false);
   };
 
+  
   React.useEffect(() => {
     getCommunityRecommendations();
   }, []);
-
+  
   return (
     <Flex
       direction="column"
@@ -99,7 +100,7 @@ const Recommendations: React.FC<RecommendationsProps> = () => {
                 (snippet) => snippet.communityId === item.id
               );
               return (
-                <Link key={item.id} href={`/r/${item.id}`}>
+                <Link key={item.id} href={`/c/${item.id}`}>
                   <Flex
                     position="relative"
                     align="center"
@@ -135,7 +136,7 @@ const Recommendations: React.FC<RecommendationsProps> = () => {
                             overflow: "hidden",
                             textOverflow: "ellipsis",
                           }}
-                        >{`r/${item.id}`}</span>
+                        >{`c/${item.id}`}</span>
                       </Flex>
                     </Flex>
                     <Box position="absolute" right="10px">
@@ -167,3 +168,4 @@ const Recommendations: React.FC<RecommendationsProps> = () => {
   );
 };
 export default Recommendations;
+

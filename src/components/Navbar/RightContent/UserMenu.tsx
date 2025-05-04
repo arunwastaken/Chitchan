@@ -14,9 +14,11 @@ import {
 import { signOut, User } from "firebase/auth";
 import { CgProfile } from "react-icons/cg";
 import { MdOutlineLogin } from "react-icons/md";
+import { FiSettings } from "react-icons/fi";
 import { auth } from "../../../firebase/clientApp";
 import { useSetRecoilState } from "recoil";
 import { authModalState } from "../../../atoms/authModalAtom";
+import { useRouter } from "next/router";
 
 type UserMenuProps = {
   user?: User | null;
@@ -25,6 +27,7 @@ type UserMenuProps = {
 const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
   const setAuthModalState = useSetRecoilState(authModalState);
   const { colorMode } = useColorMode();
+  const router = useRouter();
 
   return (
     <Menu>
@@ -68,7 +71,11 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
       <MenuList maxW="200px">
         {user ? (
           <>
-            <Button variant="menuItem" width="100%">
+            <Button 
+              variant="menuItem" 
+              width="100%"
+              onClick={() => router.push(`/u/${user.uid}`)}
+            >
               <Flex align="center">
                 <Icon 
                   fontSize={20} 
@@ -78,6 +85,31 @@ const UserMenu: React.FC<UserMenuProps> = ({ user }) => {
                 />
                 <Text fontSize="10pt" fontWeight={500}>
                   Profile
+                </Text>
+              </Flex>
+            </Button>
+            <Button 
+              variant="menuItem" 
+              width="100%"
+              onClick={() => {
+                console.log("Navigating to profile settings");
+                router.push("/profile/settings");
+              }}
+              bg={colorMode === "dark" ? "#272729" : "gray.100"}
+              color={colorMode === "dark" ? "#D7DADC" : "inherit"}
+              _hover={{ 
+                bg: colorMode === "dark" ? "#343536" : "gray.200"
+              }}
+            >
+              <Flex align="center">
+                <Icon 
+                  fontSize={20} 
+                  mr={2} 
+                  as={FiSettings} 
+                  color={colorMode === "dark" ? "#D7DADC" : "gray.600"}
+                />
+                <Text fontSize="10pt" fontWeight={500}>
+                  Profile Settings
                 </Text>
               </Flex>
             </Button>

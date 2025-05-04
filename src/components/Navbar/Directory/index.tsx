@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { ChevronDownIcon } from "@chakra-ui/icons";
 import {
   Box,
@@ -15,11 +15,17 @@ import useDirectory from "../../../hooks/useDirectory";
 import Communities from "./Communities";
 
 const Directory: React.FC = () => {
-  const [open, setOpen] = useState(false);
-  const handleClose = () => setOpen(false);
+  const [mounted, setMounted] = useState(false);
   const { colorMode } = useColorMode();
-
   const { directoryState, toggleMenuOpen } = useDirectory();
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <Menu isOpen={directoryState.isOpen}>
@@ -88,4 +94,5 @@ const Directory: React.FC = () => {
     </Menu>
   );
 };
+
 export default Directory;

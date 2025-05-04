@@ -53,5 +53,7 @@ const Navbar: React.FC = () => {
     </Flex>
   );
 };
+ 
 
 export default Navbar;
+

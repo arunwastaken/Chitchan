@@ -10,10 +10,7 @@ type HeaderProps = {
 };
 
 const Header: React.FC<HeaderProps> = ({ communityData }) => {
-  /**
-   * !!!Don't pass communityData boolean until the end
-   * It's a small optimization!!!
-   */
+
   const { communityStateValue, loading, error, onJoinLeaveCommunity } =
     useCommunityData(!!communityData);
   const isJoined = !!communityStateValue.mySnippets.find(
@@ -25,7 +22,7 @@ const Header: React.FC<HeaderProps> = ({ communityData }) => {
       <Box height="50%" bg="blue.400" />
       <Flex justifyContent="center" bg="white" height="50%">
         <Flex width="95%" maxWidth="860px">
-          {/* IMAGE URL IS ADDED AT THE VERY END BEFORE DUMMY DATA - USE ICON AT FIRST */}
+          {/* IMAGE URL IS ADDED AT THE VERY END BEFORE DUMMY DATA-USE ICON AT FIRST */}
           {communityStateValue.currentCommunity.imageURL ? (
             <Image
               borderRadius="full"
@@ -53,7 +50,7 @@ const Header: React.FC<HeaderProps> = ({ communityData }) => {
                 {communityData.id}
               </Text>
               <Text fontWeight={600} fontSize="10pt" color="gray.400">
-                r/{communityData.id}
+                c/{communityData.id}
               </Text>
             </Flex>
             <Flex>

@@ -26,6 +26,7 @@ import { auth, firestore } from "../firebase/clientApp";
 import usePosts from "../hooks/usePosts";
 import Premium from "../components/Community/Premium";
 import PersonalHome from "../components/Community/PersonalHome";
+import SEO from "../components/SEO/SEO";
 
 const Home: NextPage = () => {
   const [user, loadingUser] = useAuthState(auth);
@@ -45,7 +46,7 @@ const Home: NextPage = () => {
     setLoading(true);
     try {
       /**
-       * if snippets has no length (i.e. user not in any communities yet)
+       * If snippets has no length (i.e. user not in any communities yet)
        * do query for 20 posts ordered by voteStatus
        */
       const feedPosts: Post[] = [];
@@ -187,7 +188,7 @@ const Home: NextPage = () => {
     if (!user?.uid || !postStateValue.posts.length) return;
     getUserPostVotes();
 
-    // Clear postVotes on dismount
+    // Clear postVotes on Dismount
     return () => {
       setPostStateValue((prev) => ({
         ...prev,
@@ -197,41 +198,48 @@ const Home: NextPage = () => {
   }, [postStateValue.posts, user?.uid]);
 
   return (
-    <PageContentLayout>
-      {[
-        <div key="content-left">
-          <CreatePostLink />
-          {loading ? (
-            <PostLoader />
-          ) : (
-            <Stack>
-              {postStateValue.posts.map((post: Post, index) => (
-                <PostItem
-                  key={post.id}
-                  post={post}
-                  postIdx={index}
-                  onVote={onVote}
-                  onDeletePost={onDeletePost}
-                  userVoteValue={
-                    postStateValue.postVotes.find(
-                      (item) => item.postId === post.id
-                    )?.voteValue
-                  }
-                  userIsCreator={user?.uid === post.creatorId}
-                  onSelectPost={onSelectPost}
-                  homePage
-                />
-              ))}
-            </Stack>
-          )}
-        </div>,
-        <Stack key="content-right" spacing={5} position="sticky" top="14px">
-          <Recommendations />
-          <Premium />
-          <PersonalHome />
-        </Stack>
-      ]}
-    </PageContentLayout>
+    <>
+      <SEO 
+        title="Chitchan - Home"
+        description="Discover and join communities, share ideas, and engage in meaningful discussions on Chitchan."
+        keywords={['home', 'communities', 'discussions', 'social platform']}
+      />
+      <PageContentLayout>
+        {[
+          <div key="content-left">
+            <CreatePostLink />
+            {loading ? (
+              <PostLoader />
+            ) : (
+              <Stack>
+                {postStateValue.posts.map((post: Post, index) => (
+                  <PostItem
+                    key={post.id}
+                    post={post}
+                    postIdx={index}
+                    onVote={onVote}
+                    onDeletePost={onDeletePost}
+                    userVoteValue={
+                      postStateValue.postVotes.find(
+                        (item) => item.postId === post.id
+                      )?.voteValue
+                    }
+                    userIsCreator={user?.uid === post.creatorId}
+                    onSelectPost={onSelectPost}
+                    homePage
+                  />
+                ))}
+              </Stack>
+            )}
+          </div>,
+          <Stack key="content-right" spacing={5} position="sticky" top="14px">
+            <Recommendations />
+            <Premium />
+            <PersonalHome />
+          </Stack>
+        ]}
+      </PageContentLayout>
+    </>
   );
 };
 

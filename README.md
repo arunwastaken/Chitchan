@@ -40,7 +40,7 @@ Chitchan is a modern social media platform built with Next.js, Firebase, and Cha
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/chitchan.git
+   git clone https://github.com/DivyanshVerma0/chitchan.git
    cd chitchan
    ```
 
@@ -158,23 +158,19 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Support!!!
 
-For support, email your-email@example.com or join our Slack channel.
+For support, email divyansh_verma@icloud.com.
 
 ## 🎯 Future Improvements
 
-- [ ] Dark Mode
-- [ ] User Profiles
 - [ ] Chat System
 - [ ] Notifications
 - [ ] Post Awards
 - [ ] Mobile App
 - [ ] Search Functionality
 - [ ] Trending Posts
-
-i 
 - [ ] Community Rules
 - [ ] Moderation Tools
 
 ---
 
-Made with ❤️ by [Your Name](https://github.com/your-username)
+
