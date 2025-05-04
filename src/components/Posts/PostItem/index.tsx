@@ -1,6 +1,44 @@
 import { Stack, Box, Flex, Text, Image, Icon } from "@chakra-ui/react";
+import { doc, getDoc, deleteDoc } from "firebase/firestore";
+import { useRouter } from "next/router";
+import { useSetRecoilState } from "recoil";
 
 const PostItem: React.FC<PostItemProps> = ({ post, userIsCreator, userVoteValue, onVote, onDeletePost, onSelectPost }) => {
+  const router = useRouter();
+  const setPostStateValue = useSetRecoilState(postState);
+  const [error, setError] = useState("");
+
+  const isSinglePost = router.pathname === "/r/[community]";
+
+  const onDeletePost = async (post: Post) => {
+    try {
+      // Check if post exists
+      const postDocRef = doc(firestore, "posts", post.id);
+      const postDoc = await getDoc(postDocRef);
+      
+      if (!postDoc.exists()) {
+        throw new Error("Post not found");
+      }
+
+      // Delete post
+      await deleteDoc(postDocRef);
+
+      // Update local state
+      setPostStateValue((prev) => ({
+        ...prev,
+        posts: prev.posts.filter((item) => item.id !== post.id),
+      }));
+
+      // If on single post page, redirect to community
+      if (isSinglePost) {
+        router.push(`/r/${post.communityId}`);
+      }
+    } catch (error: any) {
+      console.log("Error deleting post", error);
+      setError(error.message);
+    }
+  };
+
   return (
     <Flex
       border="1px solid"

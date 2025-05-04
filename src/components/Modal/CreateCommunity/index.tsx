@@ -72,7 +72,8 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
           creatorId: userId,
           createdAt: serverTimestamp(),
           numberOfMembers: 1,
-          privacyType: "public",
+          privacyType: communityType,
+          imageURL: "",
         });
 
         transaction.set(
@@ -80,20 +81,32 @@ const CreateCommunityModal: React.FC<CreateCommunityModalProps> = ({
           {
             communityId: name,
             isModerator: true,
+            imageURL: "",
           }
         );
       });
+
+      // Update local state
+      setSnippetState((prev) => ({
+        ...prev,
+        mySnippets: [
+          ...prev.mySnippets,
+          {
+            communityId: name,
+            isModerator: true,
+            imageURL: "",
+          },
+        ],
+      }));
+
+      handleClose();
+      router.push(`/r/${name}`);
     } catch (error: any) {
       console.log("Transaction error", error);
       setNameError(error.message);
+    } finally {
+      setLoading(false);
     }
-    setSnippetState((prev) => ({
-      ...prev,
-      mySnippets: [],
-    }));
-    handleClose();
-    router.push(`c/${name}`);
-    setLoading(false);
   };
 
   const onCommunityTypeChange = (
