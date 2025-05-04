@@ -1,14 +1,29 @@
 import React, { useState } from "react";
-import { Button, Flex, Icon, Stack, Text, useColorMode } from "@chakra-ui/react";
+import { Button, Flex, Icon, Stack, Text, useColorMode, Spinner } from "@chakra-ui/react";
 import { ChitchanLogoColored } from "../../components/Icons/ChitchanLogoColored";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../../firebase/clientApp";
 import CreateCommunityModal from "../Modal/CreateCommunity";
+import { useSetRecoilState } from "recoil";
+import { authModalState } from "../../atoms/authModalAtom";
 
 const PersonalHome: React.FC = () => {
   const { colorMode } = useColorMode();
   const [open, setOpen] = useState(false);
   const [user] = useAuthState(auth);
+  const [loading, setLoading] = useState(false);
+  const setAuthModalState = useSetRecoilState(authModalState);
+
+  const handleCreateCommunityClick = () => {
+    setLoading(true);
+    if (!user) {
+      setAuthModalState({ open: true, view: "login" });
+      setLoading(false);
+    } else {
+      setOpen(true);
+      setLoading(false);
+    }
+  };
 
   return (
     <>
@@ -42,7 +57,7 @@ const PersonalHome: React.FC = () => {
               Your personal Chitchan frontpage, built for you.
             </Text>
             <Button height="30px">Create Post</Button>
-            <Button variant="outline" height="30px" onClick={() => setOpen(true)}>
+            <Button variant="outline" height="30px" onClick={handleCreateCommunityClick} isLoading={loading}>
               Create Community
             </Button>
           </Stack>
