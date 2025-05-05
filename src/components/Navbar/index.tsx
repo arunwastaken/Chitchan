@@ -44,7 +44,7 @@ const Navbar: React.FC = () => {
           color={colorMode === "dark" ? "dark.100" : "gray.800"}
           ml={2}
         >
-          chitchan!!!
+          chitchan
         </Text>
       </Flex>
       {user && <Directory />}
